@@ -22,7 +22,7 @@ public class Dbhelper extends SQLiteOpenHelper {
     }
 
     @Override
-
+    //weight
     public void onCreate(SQLiteDatabase db) {
             this.db=db;
             db.execSQL(create_tb);
