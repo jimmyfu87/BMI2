@@ -38,12 +38,11 @@ public class DatabaseManager {
 
     }
 
-    public void update(int id, String name, String height,String weight) {
+    public void update(String name, String height,String weight) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(dbHelper.NAME, name);
         contentValues.put(dbHelper.HEIGHT, height);
         contentValues.put(dbHelper.WEIGHT, weight);
-        database.update(dbHelper.tb_name, contentValues, dbHelper._ID + " = " + id, null);
+        database.update(dbHelper.tb_name, contentValues, dbHelper.NAME + "=" +"'"+name+"'", null);
 
     }
 

@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private EditText et1,et2,et3;
-    private Button b1,b2;
+    private Button b1,b2,b3;
     private DatabaseManager dbManager;
     private ListView listView;
     private SimpleCursorAdapter adapter;
@@ -35,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
         et3=(EditText)findViewById(R.id.weight);
         b1=(Button)findViewById(R.id.button);
         b2=(Button)findViewById(R.id.button2);
+        b3=(Button)findViewById(R.id.button3);
         final Dbhelper helpter = new Dbhelper(this);
-        
+
 //        dbManager.open();
 
 
@@ -52,10 +53,10 @@ public class MainActivity extends AppCompatActivity {
 //                values.put("name",name);
 //                values.put("height",height);
 //                values.put("weight",weight);
-                DatabaseManager dbmanager2=new DatabaseManager(getApplicationContext());
-                dbmanager2.open();
-                dbmanager2.insert(name,height,weight);
-                dbmanager2.close();
+                DatabaseManager dbmanager1=new DatabaseManager(getApplicationContext());
+                dbmanager1.open();
+                dbmanager1.insert(name,height,weight);
+                dbmanager1.close();
 //                Intent intent=new Intent(MainActivity.this,QueryActivity.class);
 //                startActivity(intent);
 
@@ -75,14 +76,27 @@ public class MainActivity extends AppCompatActivity {
 //                listView = (ListView) findViewById(R.id.myListView);
 //                adapter = new SimpleCursorAdapter(c, R.layout.adapter, cursor, from, to, 0);
 //                listView.setAdapter(adapter);
-                DatabaseManager dbManager = new DatabaseManager(getApplicationContext());
-                dbManager.open();
-                Cursor cursor = dbManager.fetch();
+                DatabaseManager dbManager2 = new DatabaseManager(getApplicationContext());
+                dbManager2.open();
+                Cursor cursor = dbManager2.fetch();
 
                 listView = (ListView) findViewById(R.id.myListView);
                 adapter = new SimpleCursorAdapter(getApplicationContext(), R.layout.adapter, cursor, from, to, 0);
                 listView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                //adapter.notifyDataSetChanged();
+
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name=et1.getText().toString();
+                String newheight=et2.getText().toString();
+                String newweight=et3.getText().toString();
+                DatabaseManager dbmanager=new DatabaseManager(getApplicationContext());
+                dbmanager.open();
+                dbmanager.update(name,newheight,newweight);
+                dbmanager.close();
 
             }
         });
