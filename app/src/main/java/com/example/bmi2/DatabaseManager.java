@@ -46,8 +46,8 @@ public class DatabaseManager {
 
     }
 
-    public void delete(int id) {
-        database.delete(dbHelper.tb_name,dbHelper._ID + " ='" + id + "'",null);
+    public void delete(String name) {
+        database.delete(dbHelper.tb_name,dbHelper.NAME + " ='" + name + "'",null);
     }
 
     public Cursor fetch() {

@@ -43,7 +43,7 @@
             android:id="@+id/height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="8"
             android:inputType="numberDecimal" />
 
         <TextView
@@ -56,25 +56,31 @@
             android:id="@+id/weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="8"
             android:inputType="numberDecimal" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="送出" />
+            android:text="插入資料" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="查詢資料庫" />
+            android:text="查詢資料庫(可直接點選)" />
+
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="更新資料" />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="刪除資料(輸入姓名即可)" />
         <include layout="@layout/content_main" />
 
     </LinearLayout>

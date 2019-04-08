@@ -15,12 +15,11 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private EditText et1,et2,et3;
-    private Button b1,b2,b3;
+    private Button b1,b2,b3,b4;
     private DatabaseManager dbManager;
     private ListView listView;
     private SimpleCursorAdapter adapter;
     private Dbhelper dbHelper;
-    private Context c;
 
     final String[] from = new String[]{dbHelper._ID, dbHelper.NAME, dbHelper.HEIGHT,dbHelper.WEIGHT};
     final int[] to = new int[]{R.id.id, R.id.name, R.id.height,R.id.weight};
@@ -36,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         b1=(Button)findViewById(R.id.button);
         b2=(Button)findViewById(R.id.button2);
         b3=(Button)findViewById(R.id.button3);
+        b4=(Button)findViewById(R.id.button4);
         final Dbhelper helpter = new Dbhelper(this);
 
 //        dbManager.open();
@@ -96,6 +96,17 @@ public class MainActivity extends AppCompatActivity {
                 DatabaseManager dbmanager=new DatabaseManager(getApplicationContext());
                 dbmanager.open();
                 dbmanager.update(name,newheight,newweight);
+                dbmanager.close();
+
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name=et1.getText().toString();
+                DatabaseManager dbmanager=new DatabaseManager(getApplicationContext());
+                dbmanager.open();
+                dbmanager.delete(name);
                 dbmanager.close();
 
             }
