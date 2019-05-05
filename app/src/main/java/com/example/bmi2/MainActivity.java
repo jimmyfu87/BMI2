@@ -14,15 +14,15 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText et1,et2,et3;
+    private EditText et1,et2,et3,et4;
     private Button b1,b2,b3,b4;
     private DatabaseManager dbManager;
     private ListView listView;
     private SimpleCursorAdapter adapter;
     private Dbhelper dbHelper;
 
-    final String[] from = new String[]{dbHelper._ID, dbHelper.NAME, dbHelper.HEIGHT,dbHelper.WEIGHT};
-    final int[] to = new int[]{R.id.id, R.id.name, R.id.height,R.id.weight};
+    final String[] from = new String[]{dbHelper._ID, dbHelper.NAME, dbHelper.HEIGHT,dbHelper.WEIGHT,dbHelper.DATE};
+    final int[] to = new int[]{R.id.id, R.id.name, R.id.height,R.id.weight,R.id.date};
 
 
 
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         et1=(EditText)findViewById(R.id.name);
         et2=(EditText)findViewById(R.id.height);
         et3=(EditText)findViewById(R.id.weight);
+        et4=(EditText)findViewById(R.id.date);
         b1=(Button)findViewById(R.id.button);
         b2=(Button)findViewById(R.id.button2);
         b3=(Button)findViewById(R.id.button3);
@@ -49,13 +50,14 @@ public class MainActivity extends AppCompatActivity {
                 String name=et1.getText().toString();
                 String height=et2.getText().toString();
                 String weight=et3.getText().toString();
+                String date=et4.getText().toString();
 //                ContentValues values=new ContentValues();
 //                values.put("name",name);
 //                values.put("height",height);
 //                values.put("weight",weight);
                 DatabaseManager dbmanager1=new DatabaseManager(getApplicationContext());
                 dbmanager1.open();
-                dbmanager1.insert(name,height,weight);
+                dbmanager1.insert(name,height,weight,date);
                 dbmanager1.close();
 //                Intent intent=new Intent(MainActivity.this,QueryActivity.class);
 //                startActivity(intent);
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 //                listView.setAdapter(adapter);
                 DatabaseManager dbManager2 = new DatabaseManager(getApplicationContext());
                 dbManager2.open();
-                Cursor cursor = dbManager2.fetch();
+                Cursor cursor = dbManager2.fetchDATE();
 
                 listView = (ListView) findViewById(R.id.myListView);
                 adapter = new SimpleCursorAdapter(getApplicationContext(), R.layout.adapter, cursor, from, to, 0);
@@ -93,9 +95,10 @@ public class MainActivity extends AppCompatActivity {
                 String name=et1.getText().toString();
                 String newheight=et2.getText().toString();
                 String newweight=et3.getText().toString();
+                String newdate=et4.getText().toString();
                 DatabaseManager dbmanager=new DatabaseManager(getApplicationContext());
                 dbmanager.open();
-                dbmanager.update(name,newheight,newweight);
+                dbmanager.update(name,newheight,newweight,newdate);
                 dbmanager.close();
 
             }

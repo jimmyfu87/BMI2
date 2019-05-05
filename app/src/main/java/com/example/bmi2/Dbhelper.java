@@ -15,13 +15,14 @@ public class Dbhelper extends SQLiteOpenHelper {
             + "_id" + " INTEGER primary key autoincrement, "
             + "name" + " text , "
             + "height" + " text , "
-            + "weight" + " text "+ ");";
+            + "weight" + " text ,"
+            + "date" + " text "+ ");";
     private SQLiteDatabase db;
     static final String _ID = "_id";
     static final String NAME = "name";
     static final String HEIGHT = "height";
     static final String WEIGHT = "weight";
-
+    static final String DATE = "date";
     Dbhelper(Context c) {
         super(c, db_name, null, 2);
     }

@@ -29,19 +29,21 @@ public class DatabaseManager {
         dbHelper.close();
     }
 
-    public void insert(String name, String height,String weight) {
+    public void insert(String name, String height,String weight,String date) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(dbHelper.NAME, name);
         contentValues.put(dbHelper.HEIGHT, height);
         contentValues.put(dbHelper.WEIGHT, weight);
+        contentValues.put(dbHelper.DATE, date);
         database.insert(dbHelper.tb_name, null, contentValues);
 
     }
 
-    public void update(String name, String height,String weight) {
+    public void update(String name, String height,String weight,String date) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(dbHelper.HEIGHT, height);
         contentValues.put(dbHelper.WEIGHT, weight);
+        contentValues.put(dbHelper.DATE, date);
         database.update(dbHelper.tb_name, contentValues, dbHelper.NAME + "=" +"'"+name+"'", null);
 
     }
@@ -51,11 +53,15 @@ public class DatabaseManager {
     }
 
     public Cursor fetch() {
-        String[] columns = new String[]{dbHelper._ID, dbHelper.NAME, dbHelper.HEIGHT,dbHelper.WEIGHT};
+        String[] columns = new String[]{dbHelper._ID, dbHelper.NAME, dbHelper.HEIGHT,dbHelper.WEIGHT,dbHelper.DATE};
         Cursor cursor = database.query(dbHelper.tb_name, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
         return cursor;
+    }
+    public Cursor fetchDATE() {
+        return database.rawQuery
+                ("select * from Bmi where dateTime(date) between datetime('2017-01-01') and datetime('2019-05-30')",null);
     }
 }
