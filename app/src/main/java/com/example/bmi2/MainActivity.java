@@ -14,7 +14,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText et1,et2,et3,et4;
+    private EditText et1,et2,et3,et4,et5;
     private Button b1,b2,b3,b4;
     private DatabaseManager dbManager;
     private ListView listView;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         et2=(EditText)findViewById(R.id.height);
         et3=(EditText)findViewById(R.id.weight);
         et4=(EditText)findViewById(R.id.date);
+        et5=(EditText)findViewById(R.id.enddate);
         b1=(Button)findViewById(R.id.button);
         b2=(Button)findViewById(R.id.button2);
         b3=(Button)findViewById(R.id.button3);
@@ -78,14 +79,25 @@ public class MainActivity extends AppCompatActivity {
 //                listView = (ListView) findViewById(R.id.myListView);
 //                adapter = new SimpleCursorAdapter(c, R.layout.adapter, cursor, from, to, 0);
 //                listView.setAdapter(adapter);
-                DatabaseManager dbManager2 = new DatabaseManager(getApplicationContext());
-                dbManager2.open();
-                Cursor cursor = dbManager2.fetchDATE();
+                Intent intent = new Intent(MainActivity.this,result_activity.class);
+                Bundle saveExpenseData = new Bundle();
+                String startdate=et4.getText().toString();
+                String enddate=et5.getText().toString();
+                saveExpenseData.putString("start",startdate);
+                saveExpenseData.putString("end",enddate);
+                intent.putExtras(saveExpenseData);
+                startActivity(intent);
 
-                listView = (ListView) findViewById(R.id.myListView);
-                adapter = new SimpleCursorAdapter(getApplicationContext(), R.layout.adapter, cursor, from, to, 0);
-                listView.setAdapter(adapter);
-                //adapter.notifyDataSetChanged();
+
+
+//                DatabaseManager dbManager2 = new DatabaseManager(getApplicationContext());
+//                dbManager2.open();
+//                Cursor cursor = dbManager2.fetchDATE(startdate,enddate);
+//
+//                listView = (ListView) findViewById(R.id.myListView);
+//                adapter = new SimpleCursorAdapter(getApplicationContext(), R.layout.adapter, cursor, from, to, 0);
+//                listView.setAdapter(adapter);
+//                //adapter.notifyDataSetChanged();
 
             }
         });

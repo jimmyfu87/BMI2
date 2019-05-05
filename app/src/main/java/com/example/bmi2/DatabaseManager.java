@@ -60,8 +60,8 @@ public class DatabaseManager {
         }
         return cursor;
     }
-    public Cursor fetchDATE() {
+    public Cursor fetchDATE(String starttime,String endtime) {
         return database.rawQuery
-                ("select * from Bmi where dateTime(date) between datetime('2017-01-01') and datetime('2019-05-30')",null);
+                ("select * from Bmi where dateTime(date) between datetime('"+starttime+"') and datetime('"+endtime+"')",null);
     }
 }

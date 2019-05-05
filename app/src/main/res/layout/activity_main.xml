@@ -70,6 +70,18 @@
             android:layout_height="wrap_content"
             android:ems="8"
             android:inputType="textPersonName|text" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="結束日期" />
+
+        <EditText
+            android:id="@+id/enddate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="8"
+            android:inputType="textPersonName|text" />
 
         <Button
             android:id="@+id/button"
@@ -93,7 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="刪除資料(輸入姓名即可)" />
-        <include layout="@layout/content_main" />
+
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
