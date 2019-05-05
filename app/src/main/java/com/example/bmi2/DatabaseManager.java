@@ -62,6 +62,6 @@ public class DatabaseManager {
     }
     public Cursor fetchDATE(String starttime,String endtime) {
         return database.rawQuery
-                ("select * from Bmi where dateTime(date) between datetime('"+starttime+"') and datetime('"+endtime+"')",null);
+                ("select * from Bmi where dateTime(date) between datetime('"+starttime+"') and datetime('"+endtime+"')"+"ORDER BY date DESC",null);
     }
 }
